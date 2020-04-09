@@ -47,15 +47,6 @@ namespace SocketUser
 
     class Protocol
     {
-<<<<<<< HEAD
-        /*
-        Packet ParsePackage(byte[] collection)
-        {
-             regex
-            return Packet{ };
-        }     
-        */
-=======
         string[] AllowedHeaders = { "Command", "Compression" };
 
         public Packet ParsePacket(string buffer)
@@ -93,8 +84,5 @@ namespace SocketUser
             packet.Response = message;
             return packet;
         }
-
-
->>>>>>> 47cf44a2f86429421c32f556b94a29fe73163ad6
     }
 }
