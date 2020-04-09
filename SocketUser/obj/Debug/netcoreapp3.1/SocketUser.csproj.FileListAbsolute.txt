@@ -1,0 +1,13 @@
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.exe
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.deps.json
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.runtimeconfig.json
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.runtimeconfig.dev.json
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.dll
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.pdb
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.csprojAssemblyReference.cache
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.csproj.CoreCompileInputs.cache
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.AssemblyInfoInputs.cache
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.AssemblyInfo.cs
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.dll
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.pdb
+D:\Projects\Visual Studio Projects\SocketUser\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.genruntimeconfig.cache
