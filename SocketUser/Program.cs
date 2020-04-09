@@ -3,6 +3,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using SocketUser;
+using System.IO;
 
 namespace SocketTcpClient
 {
@@ -36,7 +37,13 @@ namespace SocketTcpClient
 
                         string message = Console.ReadLine();
                         byte[] data = Encoding.Unicode.GetBytes(message);
-                        socket.Send(data);
+
+                        FileStream fs = new FileStream("D:\\Projects\\kek.exe", FileMode.Open, FileAccess.Read);
+
+                        byte[] data_ = new byte[fs.Length];
+                        fs.Read(data_, 0, System.Convert.ToInt32(fs.Length));
+
+                        socket.Send(data_);
 
                         // получаем ответ
                         data = new byte[256]; // буфер для ответа
@@ -50,6 +57,7 @@ namespace SocketTcpClient
                         }
                         while (socket.Available > 0);
                         Console.WriteLine("ответ сервера: " + builder.ToString());
+                        Console.WriteLine(socket.Available);
 
                         if (builder.ToString() == "Подключение закрыто!")
                         {

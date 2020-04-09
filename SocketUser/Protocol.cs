@@ -21,10 +21,12 @@ namespace SocketUser
 
     class Protocol
     {
+        /*
         Packet ParsePackage(byte[] collection)
         {
-
+             regex
             return Packet{ };
-        }        
+        }     
+        */
     }
 }
