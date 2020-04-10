@@ -24,3 +24,16 @@ C:\Users\edelw\Desktop\Dev\C#\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1
 C:\Users\edelw\Desktop\Dev\C#\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.dll
 C:\Users\edelw\Desktop\Dev\C#\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.pdb
 C:\Users\edelw\Desktop\Dev\C#\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.genruntimeconfig.cache
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.exe
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.deps.json
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.runtimeconfig.json
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.runtimeconfig.dev.json
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.dll
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\bin\Debug\netcoreapp3.1\SocketUser.pdb
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.csprojAssemblyReference.cache
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.csproj.CoreCompileInputs.cache
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.AssemblyInfoInputs.cache
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.AssemblyInfo.cs
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.dll
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.pdb
+C:\Users\edelw\Desktop\Client-Server\.NET_TCP_Client\SocketUser\obj\Debug\netcoreapp3.1\SocketUser.genruntimeconfig.cache
