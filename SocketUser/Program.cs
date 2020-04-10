@@ -20,15 +20,23 @@ namespace SocketTcpClient
 
                     SocketInteraction socketInteraction = new SocketInteraction();
 
-                    // подключаемся к удаленному хосту
+                    // connecting to remote host
                     socketInteraction.Connect();
 
                     socketInteraction.Login();
 
                     Thread acceptMessageManager = new Thread(new ThreadStart(() =>
                     {
-                        while (true)
-                            socketInteraction.getAnswer();
+                        try
+                        {
+                            while (true) {
+                                socketInteraction.getAnswer();
+                            }
+                        } catch(Exception exc)
+                        {
+                            Console.WriteLine("Server error: " + exc);
+                            Environment.Exit(0);
+                        }
                     }));
 
                     acceptMessageManager.Start();

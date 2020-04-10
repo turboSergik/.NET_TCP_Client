@@ -51,30 +51,6 @@ namespace SocketUser
     {
         string[] AllowedHeaders = { "Command", "User" };
 
-        public static Packet ParsePacket(string buffer)
-        {
-            int split = buffer.IndexOf("\n\n") == -1 ? buffer.Length : buffer.IndexOf("\n\n") + 2;
-
-            Regex metaParser = new Regex("([A-Za-z 0-9]+): +(.+)");
-            Match match = metaParser.Match(buffer.Substring(0, split));
-
-            Dictionary<string, string> meta = new Dictionary<string, string>();
-
-            while (match.Success)
-            {
-                string header = match.Groups[1].Value;
-                string value = match.Groups[2].Value;
-
-                meta.Add(header, value);
-                match = match.NextMatch();
-            }
-
-            Packet packet = new Packet();
-            packet.Meta = meta;
-            packet.Response = Encoding.UTF8.GetBytes(buffer.Substring(split));
-            return packet;
-        }
-
         public static Packet ConfigurePacket(Command command, string username, byte[] message)
         {
             Dictionary<string, string> format = new Dictionary<string, string>();
@@ -98,14 +74,6 @@ namespace SocketUser
             packet.Meta = format;
             packet.Response = message;
             return packet;
-        }
-
-        public static Dictionary<string, string> ConfigureMeta(Command command, string username)
-        {
-            Dictionary<string, string> format = new Dictionary<string, string>();
-            format.Add("Command", command.ToString());
-            format.Add("User", username);
-            return format;
         }
 
         public static Dictionary<string, string> ParseMeta(string buffer)
