@@ -22,12 +22,14 @@ namespace SocketTcpClient
 
                     // подключаемся к удаленному хосту
                     socketInteraction.Connect();
-                   
+
+                    socketInteraction.Login();
+
                     while (true)
                     {
 
                         socketInteraction.sendMessage();
-                        socketInteraction.getAnswer();
+                        // socketInteraction.getAnswer();
 
                     }
                 }

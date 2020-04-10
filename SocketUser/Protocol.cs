@@ -9,9 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace SocketUser
 {
-    enum Command { LOGIN, TEXT, BIN, EXIT };
-
-    enum Compression { ZIP, NONE };
+    enum Command { LOGIN, TEXT, BIN, UTILS };
 
     struct Packet
     {
@@ -19,8 +17,14 @@ namespace SocketUser
         public byte[] Response;
         public override string ToString()
         {
-            string result = "";
+            string result = Encoding.UTF8.GetString(this.MetaBytes());
+            result += Encoding.UTF8.GetString(this.Response);
+            return result;
+        }
 
+        public byte[] MetaBytes()
+        {
+            string result = "";
             foreach (KeyValuePair<string, string> pair in this.Meta)
             {
                 result += pair.Key;
@@ -29,9 +33,7 @@ namespace SocketUser
                 result += "\n";
             }
             result += "\n";
-            result += Encoding.UTF8.GetString(this.Response);
-
-            return result;
+            return Encoding.UTF8.GetBytes(result);
         }
     };
 
@@ -47,9 +49,9 @@ namespace SocketUser
 
     class Protocol
     {
-        string[] AllowedHeaders = { "Command", "Compression" };
+        string[] AllowedHeaders = { "Command", "User" };
 
-        public Packet ParsePacket(string buffer)
+        public static Packet ParsePacket(string buffer)
         {
             int split = buffer.IndexOf("\n\n") == -1 ? buffer.Length : buffer.IndexOf("\n\n") + 2;
 
@@ -73,16 +75,55 @@ namespace SocketUser
             return packet;
         }
 
-        public Packet ConfigurePacket(Command command, Compression compression, byte[] message)
+        public static Packet ConfigurePacket(Command command, string username, byte[] message)
         {
             Dictionary<string, string> format = new Dictionary<string, string>();
             format.Add("Command", command.ToString());
-            format.Add("Compression", compression.ToString());
+            format.Add("User", username);
 
             Packet packet = new Packet();
             packet.Meta = format;
             packet.Response = message;
             return packet;
+        }
+
+        public static Packet ConfigurePacket(Command command, string username, string utils, byte[] message)
+        {
+            Dictionary<string, string> format = new Dictionary<string, string>();
+            format.Add("Command", command.ToString());
+            format.Add("User", username);
+            format.Add("Utils", utils);
+
+            Packet packet = new Packet();
+            packet.Meta = format;
+            packet.Response = message;
+            return packet;
+        }
+
+        public static Dictionary<string, string> ConfigureMeta(Command command, string username)
+        {
+            Dictionary<string, string> format = new Dictionary<string, string>();
+            format.Add("Command", command.ToString());
+            format.Add("User", username);
+            return format;
+        }
+
+        public static Dictionary<string, string> ParseMeta(string buffer)
+        {
+            Regex metaParser = new Regex("([A-Za-z 0-9]+): +([A-Za-z 0-9]+)");
+            Match match = metaParser.Match(buffer);
+
+            Dictionary<string, string> meta = new Dictionary<string, string>();
+
+            while (match.Success)
+            {
+                string header = match.Groups[1].Value;
+                string value = match.Groups[2].Value;
+
+                meta.Add(header, value);
+                match = match.NextMatch();
+            }
+            return meta;
         }
     }
 }
