@@ -87,6 +87,19 @@ namespace SocketUser
             return packet;
         }
 
+        public static Packet ConfigurePacket(Command command, string username, string utils, byte[] message)
+        {
+            Dictionary<string, string> format = new Dictionary<string, string>();
+            format.Add("Command", command.ToString());
+            format.Add("User", username);
+            format.Add("Utils", utils);
+
+            Packet packet = new Packet();
+            packet.Meta = format;
+            packet.Response = message;
+            return packet;
+        }
+
         public static Dictionary<string, string> ConfigureMeta(Command command, string username)
         {
             Dictionary<string, string> format = new Dictionary<string, string>();

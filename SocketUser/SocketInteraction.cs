@@ -37,11 +37,59 @@ namespace SocketUser
             Console.Write("Введите сообщение:");
 
             string message = Console.ReadLine();
+            Packet packet = new Packet();
 
-            Packet packet = Protocol.ConfigurePacket(Command.TEXT, Settings.name, Encoding.Unicode.GetBytes(message));
+            /*
+             /login 
+            */
+
+            if (message.Length > 0)
+            {
+                string needData = "";
+                string needCommand = "";
+                int pos = 0;
+
+                
+
+                if (message[0] == '/')
+                {
+                    for (int i = 1; i < message.Length; i++)
+                    {
+                        if (message[i] == ' ')
+                        {
+                            pos = i;
+                            break;
+                        }
+                        needCommand += message[i];
+                    }
+
+                    for (int i = pos + 1; i < message.Length; i++) needData += message[i];
+                    if (needData.Length == 0) needData += " ";
+
+                    if (needCommand.ToLower() == "help") packet = Protocol.ConfigurePacket(Command.UTILS, Settings.name, "help", Encoding.Unicode.GetBytes(needData));
+                    if (needCommand.ToLower() == "get") packet = Protocol.ConfigurePacket(Command.UTILS, Settings.name, "help", Encoding.Unicode.GetBytes(needData));
+                    if (needCommand.ToLower() == "connect") packet = Protocol.ConfigurePacket(Command.UTILS, Settings.name, "help", Encoding.Unicode.GetBytes(needData));
+                    if (needCommand.ToLower() == "disconnect") packet = Protocol.ConfigurePacket(Command.UTILS, Settings.name, "help", Encoding.Unicode.GetBytes(needData));
+                    if (needCommand.ToLower() == "send") packet = Protocol.ConfigurePacket(Command.BIN, Settings.name, "help", Encoding.Unicode.GetBytes(needData));
+
+                }
+                else
+                {
+                    needData = message;
+                    packet = Protocol.ConfigurePacket(Command.TEXT, Settings.name, Encoding.Unicode.GetBytes(needData));
+                }
+            }
+            else
+            {                
+                return;
+            }
+
             socket.Send(packet.MetaBytes());
             socket.Send(packet.Response);
         }
+
+
+
 
         public void getAnswer()
         {
@@ -55,7 +103,7 @@ namespace SocketUser
             List<byte[]> list = new List<byte[]>();
             do
             {
-                byte[] data = new byte[256]; // buffer for answer
+                byte[] data = new byte[255]; // buffer for answer
 
                 socket.Receive(data, data.Length, 0);
                 list.Add(data);
