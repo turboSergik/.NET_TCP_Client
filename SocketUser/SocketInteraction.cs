@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -111,6 +112,9 @@ namespace SocketUser
             }
             while (socket.Available > 0);
 
+            byte[] output = list.SelectMany(a => a).ToArray();
+            string result = Encoding.Unicode.GetString(output);
+
             // TODO: отследить тип запроса
 
             switch (Enum.Parse(typeof(Command), meta["Command"]))
@@ -121,7 +125,7 @@ namespace SocketUser
                     break;
             }
 
-            Console.WriteLine("Ответ сервера: " + builder.ToString());
+            Console.WriteLine("\n" + meta["User"] + ": " + result);
 
             if (builder.ToString() == "Connection closed by user!")
             {
