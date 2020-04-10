@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using SocketUser;
 using System.IO;
-
+using System.Threading;
 
 namespace SocketTcpClient
 {
@@ -25,12 +25,18 @@ namespace SocketTcpClient
 
                     socketInteraction.Login();
 
+                    Thread acceptMessageManager = new Thread(new ThreadStart(() =>
+                    {
+                        while (true)
+                            socketInteraction.getAnswer();
+                    }));
+
+                    acceptMessageManager.Start();
+
                     while (true)
                     {
 
                         socketInteraction.sendMessage();
-                        // socketInteraction.getAnswer();
-
                     }
                 }
                 catch (Exception ex)

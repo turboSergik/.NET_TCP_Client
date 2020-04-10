@@ -11,6 +11,16 @@ namespace SocketUser
 {
     enum Command { LOGIN, TEXT, BIN, UTILS };
 
+    /**
+     * Format:
+     * 
+     * Command: login
+     * Compression: gzip
+     * 
+     * edelwud
+     * 
+     */
+
     struct Packet
     {
         public Dictionary<string, string> Meta;
@@ -37,16 +47,6 @@ namespace SocketUser
         }
     };
 
-    /**
-     * Format:
-     * 
-     * Command: login
-     * Compression: gzip
-     * 
-     * edelwud
-     * 
-     */
-
     class Protocol
     {
         string[] AllowedHeaders = { "Command", "User" };
@@ -55,7 +55,7 @@ namespace SocketUser
         {
             int split = buffer.IndexOf("\n\n") == -1 ? buffer.Length : buffer.IndexOf("\n\n") + 2;
 
-            Regex metaParser = new Regex("([A-Za-z 0-9]+): +([A-Za-z 0-9]+)");
+            Regex metaParser = new Regex("([A-Za-z 0-9]+): +(.+)");
             Match match = metaParser.Match(buffer.Substring(0, split));
 
             Dictionary<string, string> meta = new Dictionary<string, string>();
@@ -110,7 +110,7 @@ namespace SocketUser
 
         public static Dictionary<string, string> ParseMeta(string buffer)
         {
-            Regex metaParser = new Regex("([A-Za-z 0-9]+): +([A-Za-z 0-9]+)");
+            Regex metaParser = new Regex("([A-Za-z 0-9]+): +(.+)");
             Match match = metaParser.Match(buffer);
 
             Dictionary<string, string> meta = new Dictionary<string, string>();
